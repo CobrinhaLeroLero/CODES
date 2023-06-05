@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int main() 
+{
+  int A[20][20], i, x, y, j;
+
+srand(time(NULL));
+
+for (i=0;i<20;i++)
+  {
+  for (j=0;j<20;j++)
+    {
+      A[i][j]= rand() % 10;
+    printf("[%d] ", A[i][j]);
+    }
+    printf("\n");
+  }
+
+  printf("\nQual valor deseja buscar?:");
+  scanf("%d", &x);
+
+  printf("\nO valor %d está presente nas posições:\n\n", x);
+
+  for (i=0;i<20;i++)
+  {
+  for (j=0;j<20;j++)
+    {
+     if (A[i][j]== x)
+     {
+    printf("Linha %d, Coluna %d\n", (i+1), (j+1));
+     }
+      else
+     {
+        printf("");
+      }
+    }
+  }
+  
+return 0;
+
+}
