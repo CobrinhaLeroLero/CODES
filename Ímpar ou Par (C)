@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include <math.h>
+
+int main()
+
+{
+int Num;
+
+  loop:
+
+printf("Digite um número inteiro: ");
+scanf("%d", &Num);
+
+if(Num == 0)
+{
+    goto fim;
+}
+
+else
+{
+   
+}
+  
+if(Num % 2 == 0)
+{
+    printf("É par\n");
+}
+  
+else
+{
+    printf("É ímpar\n");
+}
+
+goto loop;
+
+  fim:
+
+  printf("Fim");
+  
+return 0;
+}
