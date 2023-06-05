@@ -1,0 +1,85 @@
+#include <stdio.h>
+#include <math.h>
+
+int main() {
+  int n, M, m, P, p, i, E;
+  float s, S;
+  n = 10;
+  S = 0;
+  E = 0;
+int a[n];
+  
+  for (i=0;i<n; i++)
+    {
+        printf("Informe um valor inteiro para a posição %d: \n", i);
+      scanf("%d", &a[i]);
+    }
+for (i=0;i<n; i++)
+  {
+    printf(" %d", a[i]);
+  }
+  M = a[0];
+    m = a[0];
+  p = 0;
+    P = 0;
+  for (i=1; i<n; i++)
+    {
+      if (a[i]> M)
+      {
+        M = a[i];
+        P = i;
+      }
+      else {
+        if (a[i] < m)
+        {
+m = a[i];
+p = i;
+       }
+      }
+    }
+  for (i = 0; i<n; i++)
+    {
+      S = S + a[i];
+    }
+s = S/n;
+
+lal:
+E = 0;
+
+  printf("\n\nMENU\n1:Maior Valor\n2:Menor Valor\n3:Média\nOutro:Sair\nEscolha uma das opções: \n");
+  scanf("%d", &E);
+
+  if(E == 1)
+  {
+    goto mai;
+  }
+ else if(E==2)
+  {
+    goto men;
+  }
+  else if(E==3)
+  {
+    goto med;
+  }
+  else{
+    goto fim;
+  }
+
+mai:
+  printf("\n\nMaior valor: %d na posição %d", M, P);
+  goto lal;
+    
+    men:
+    printf("\n\nMenor valor: %d na posição %d\n", m, p);
+  goto lal;
+    
+    med:
+    printf("A média é: %.1f\n", s); 
+  goto lal;
+
+  fim:
+  printf("\nfim");
+ 
+  
+  return 0;
+}
