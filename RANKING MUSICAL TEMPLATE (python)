@@ -1,0 +1,94 @@
+//funçoes
+
+def obter_nota(musica):
+    while True:
+        try:
+            nota = int(input(f'Digite uma nota de 0 a 5 para a música "{musica}": '))
+            if nota < 0 or nota > 5:
+                print('Por favor, digite uma nota válida de 0 a 5.')
+            else:
+                return nota
+        except ValueError:
+            print('Por favor, digite um número inteiro.')
+          
+def exibir_ranking_albuns(ranking):
+    print('\n\033[1;37m--- Ranking de Álbuns ---\033[m')
+    for i, (album, nota) in enumerate(ranking, start=1):
+        if nota >= 5:
+            cor = '\033[1;35m'
+        elif nota >= 4:
+            cor = '\033[1;34m'
+        elif nota >= 3:
+            cor = '\033[1;32m'
+        elif nota >= 2:
+            cor = '\033[1;33m'
+        elif nota >= 1:
+            cor = '\033[1;31m'
+        else:
+            cor = '\033[1;30m'
+        
+        print(f'{cor}{album} - Nota: {nota: .1f}\033[m')
+
+
+
+from funcoes import obter_nota
+from funcoes import exibir_ranking_albuns
+
+
+# Álbuns e suas músicas
+albuns = {
+    'Album 1': ['Música 1', 'Música 2', 'Música 3'],
+    'Album 2': ['Música 4', 'Música 5', 'Música 6'],
+    'Album 3': ['Música 7', 'Música 8', 'Música 9'],
+    'Album 4': ['Música 10', 'Música 11', 'Música 12'],
+    'Album 5': ['Música 13', 'Música 14', 'Música 15']
+}
+
+# Notas das músicas e dos álbuns
+notas_musicas = {}
+notas_albuns = {}
+
+print("\033[1;30m(0):Não escutei\033[m") #cinza
+print("\033[1;31m(1):Odeio\033[m") #vermelho
+print("\033[1;33m(2):Ruinzinha\033[m") #amarelo
+print("\033[1;32m(3):Boa\033[m")  #verde
+print("\033[1;34m(4):Muito boa\033[m") #azul
+print("\033[1;35m(5):Obra de Arte!\033[m") #roxo
+
+#função de cores
+# def cores
+
+
+# Obtendo as notas
+
+# Loop para obter as notas
+for album, musicas in albuns.items():
+    print(f'\n\033[1;37m--- Álbum: {album} ---\033[m')
+    while True:
+        incluir_album = input('Deseja incluir esse Álbum? (S/N): ')
+        if incluir_album.upper() == 'S':
+            notas_album = []  # Lista para armazenar as notas das músicas do álbum
+            for musica in musicas:
+                nota = obter_nota(musica)
+                notas_musicas[musica] = nota
+                notas_album.append(nota)  # Adiciona a nota à lista do álbum
+
+            # Média das notas das músicas do álbum (Excluindo nota 0)
+            notas_validas = [nota for nota in notas_album if nota != 0]
+            media_album = sum(notas_validas) / len(notas_validas) if len(notas_validas) > 0 else 0
+            notas_albuns[album] = media_album
+            break
+        elif incluir_album.upper() == 'N':
+            break
+        else:
+            print('Por favor, digite uma opção válida (S/N).')
+
+
+# lista (álbum, nota)
+ranking = [(album, nota) for album, nota in notas_albuns.items()]
+
+# Ranking em ordem decrescente
+ranking = sorted(ranking, key=lambda x: x[1], reverse=True)
+
+exibir_ranking_albuns(ranking)
+
