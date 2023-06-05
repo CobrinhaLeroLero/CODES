@@ -1,0 +1,126 @@
+#include <stdio.h>
+#include <math.h>
+int main()
+{
+  float A, B, M, R;
+  ini:
+
+  A = 0;
+  B = 0;
+  M = 0;
+  R = 0;
+  // O Menu onde todas as opções de operação são mostradas
+  printf("\nMENU\n 1:Soma\n 2:Subtração\n 3:Multiplicação\n 4:Divisão\n 5:Potenciação\n 6:Radiciação\n Digite outro para sair\n\n Escolha uma opção: ");
+  //Checa qual operação foi escolhida
+  scanf("%f", &M);
+//soma
+  if(M == 1)
+  {
+goto soma;
+  }
+    //subtração
+    else if(M == 2)
+    {
+      goto sub;
+    }
+else if(M == 3)
+{
+  goto multi;
+}
+else if(M == 4)
+{
+  goto div;
+}
+else if(M == 5)
+{
+  goto pot;
+}
+else if(M == 6)
+{
+  goto rad;
+}
+  else
+{
+  goto fim;
+}
+
+  soma:
+
+  printf("Dê o valor de A e B: \n");
+  scanf("%f %f", &A, &B);
+
+  R = A + B;
+    goto res1;
+
+  sub:
+
+  printf("Dê o valor de A e B: \n");
+  scanf("%f %f", &A, &B);
+
+  R = A - B;
+    goto res2;
+
+  multi:
+  
+printf("Dê o valor de A e B: \n");
+  scanf("%f %f", &A, &B);
+
+  R = A * B;
+    goto res3;
+
+  div:
+
+  printf("Dê o valor de A e B: \n");
+  scanf("%f %f", &A, &B);
+
+  R = A / B;
+    goto res4;
+  
+  pot:
+  
+  printf("Dê o valor de A e B: \n");
+  scanf("%f %f", &A, &B);
+
+  R = pow(A, B);
+    goto res5;
+
+  rad:
+
+  printf("Dê o valor de A e B: \n");
+  scanf("%f %f", &A, &B);
+
+  R = pow(A, 1/B);
+    goto res6;
+
+  res1:
+  printf(" O resultado da soma é %.2f\n", R);
+  goto ini;
+
+    res2:
+  printf(" O resultado da subtração é %.2f\n", R);
+  goto ini;
+
+    res3:
+  printf(" O resultado da multiplicação é %.2f\n", R);
+  goto ini;
+
+    res4:
+  printf(" O resultado da divisão é %.2f\n", R);
+  goto ini;
+
+    res5:
+  printf(" O resultado da potenciação é %.2f\n", R);
+  goto ini;
+
+      res6:
+  printf(" O resultado da radiciação é %.2f\n", R);
+  goto ini;
+  
+
+  fim:
+
+  printf("Fim\n");
+  
+return 0;
+
+}
