@@ -1,0 +1,55 @@
+using System;
+
+class Program {
+  public static void Main (string[] args) {
+
+
+    
+int n=100, i, j, M, N, T;
+  
+  
+//Tamanho do vetor
+  Console.WriteLine("Quantos números terá o vetor?: \n");
+   n = int.Parse(Console.ReadLine());
+    int[] V = new int[n];
+  N=n;
+//Componentes
+ Console.WriteLine("Informe os componentes do vetor: \n");
+  for (i=0; i < V.Length ; i++)
+    {
+      V[i] = int.Parse(Console.ReadLine());
+    }
+
+string vet_des = string.Join(" ", V);
+    
+ Console.WriteLine("\n\nVetor desordenado: ");
+
+    Console.WriteLine(vet_des);
+
+    
+  //Função de ordenação
+    for (i=0;i<N-1;i++) //Varrendo o array até que esteja completamente ordenado
+    {
+        M = i;
+        for (j= i+1;j<N;j++) //Achando o menor número atual
+        {
+            if (V[j] < V[M]) 
+            {
+                M = j;
+            }
+        }//Realizando as trocas necessárias
+        T = V[i];
+        V[i] = V[M];
+        V[M] = T;
+
+    
+    }
+  string vet_ord = string.Join(" ", V);
+    
+Console.WriteLine("\n\n");
+  //Print do array ordenado
+    Console.WriteLine("Vetor em ordem crescente: ");
+    
+        Console.WriteLine(vet_ord);
+    }
+  }
