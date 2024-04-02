@@ -1,0 +1,130 @@
+//Jogo de TERMO, porém, usando números ao invés de letras
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+
+// Definições de cores
+#define RESET_COLOR "\x1b[0m"
+#define RED_COLOR "\x1b[31m"
+#define GREEN_COLOR "\x1b[32m"
+#define YELLOW_COLOR "\x1b[33m"
+
+// Função para imprimir um número com a cor especificada
+void printColor(int number, const char* color) {
+    printf("%s%d%s", color, number, RESET_COLOR);
+}
+
+// Função para desenhar o palpite com cores
+void drawGuess(const int guess[], const int result[], int length) {
+    for (int i = 0; i < length; i++) {
+        if (result[i] == 1) {
+            printColor(guess[i], GREEN_COLOR); // Número correto e na posição correta (verde)
+        } else if (result[i] == 2) {
+            printColor(guess[i], YELLOW_COLOR); // Número correto, mas na posição errada (amarelo)
+        } else {
+            printColor(guess[i], RED_COLOR); // Número errado (vermelho)
+        }
+    }
+    printf(" "); // Espaço para separar os números
+}
+
+int main() {
+    bool quit = false; // Variável para controlar se o jogo terminou
+    int attempts = 6; // Número de tentativas disponíveis
+    int secret[5]; // Defina sua senha aqui
+    int guess[5], i; // Vetor para armazenar o palpite do jogador (tamanho 5)
+    int result[5]; // Vetor para armazenar o resultado do palpite (tamanho 5)
+
+for(i=0;i<5;i++)
+  {
+    secret[i] = (rand() % 8) + 1;
+  }
+
+  
+
+    // Loop principal do jogo
+    while (!quit && attempts > 0) {
+        printf("\n\nBem-vindo ao Jogo do TERMO!\n");
+        printf("Tente adivinhar o número secreto de 5 dígitos.\n");
+        printf("Você tem %d tentativas.\n", attempts);
+
+        bool validGuess = false;
+
+        // Resetar os vetores guess e result no início de cada tentativa
+        for (int i = 0; i < 5; i++) {
+            guess[i] = 0;
+            result[i] = 0;
+        }
+
+        // Solicitar o palpite do jogador
+        while (!validGuess) {
+            printf("Palpite (5 dígitos): ");
+            for (int i = 0; i < 5; i++) {
+                scanf("%1d", &guess[i]);
+
+            }
+
+         
+
+      // Verificar se o palpite é válido
+          validGuess = true;
+          for (int i = 0; i < 5; i++) {
+              if (guess[i] < 1 || guess[i] > 9) {
+                  validGuess = false;
+                  break;
+              }
+          }
+
+         
+          
+
+          if (!validGuess) {
+              printf("Palpite inválido. Por favor, insira exatamente 5 dígitos entre 1 e 9.\n");
+          }
+      }
+
+        // Verificar os dígitos e preencher o resultado
+        for (int i = 0; i < 5; i++) {
+            if (guess[i] == secret[i]) {
+                result[i] = 1; // Correto e na posição correta (verde)
+            } else {
+                for (int j = 0; j < 5; j++) {
+                    if (guess[i] == secret[j]) {
+                        result[i] = 2; // Correto, mas na posição errada (amarelo)
+                        break;
+                    }
+                }
+            }
+        }
+
+        // Desenhar o palpite com cores
+        drawGuess(guess, result, 5);
+        attempts--;
+
+        bool correct = true;
+
+        // Verificar se todos os dígitos estão corretos
+        for (int i = 0; i < 5; i++) {
+            if (result[i] != 1) {
+                correct = false;
+                break;
+            }
+        }
+
+        // Verificar o resultado do jogo
+        if (correct) {
+            printf("\nParabéns! Você acertou a senha.\n");
+            quit = true;
+        } else if (attempts == 0) {
+            printf("\nSuas tentativas acabaram. A senha era: ");
+            for (int i = 0; i < 5; i++) {
+                printf("%d", secret[i]);
+            }
+            printf("\n");
+            quit = true;
+        }
+    }
+
+    return 0;
+}
