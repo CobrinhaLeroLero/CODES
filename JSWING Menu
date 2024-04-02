@@ -1,0 +1,109 @@
+package projeto_swing;
+
+
+
+import javax.swing.*;
+
+import java.awt.*;
+
+import java.awt.event.*;
+
+
+
+public class FormularioSwing extends JFrame {
+
+    private JTextField txtNome;
+
+    private JTextField txtSobrenome;
+
+
+
+    public FormularioSwing() {
+
+        super("Formulário Swing");
+
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        setSize(300, 150);
+
+        setLocationRelativeTo(null); // Centraliza a janela
+
+
+
+        // Criação dos componentes
+
+        JLabel lblNome = new JLabel("Nome:");
+
+        txtNome = new JTextField(20);
+
+        JLabel lblSobrenome = new JLabel("Sobrenome:");
+
+        txtSobrenome = new JTextField(20);
+
+        JButton btnMostrar = new JButton("Mostrar");
+
+
+
+        // Adiciona os componentes ao painel
+
+        JPanel pnlPanel_01 = new JPanel(new GridLayout(3, 2));
+
+        pnlPanel_01.add(lblNome);
+
+        pnlPanel_01.add(txtNome);
+
+        pnlPanel_01.add(lblSobrenome);
+
+        pnlPanel_01.add(txtSobrenome);
+
+        pnlPanel_01.add(btnMostrar);
+
+
+
+        // Adiciona o painel ao frame
+
+        getContentPane().add(pnlPanel_01);
+
+
+
+        // Adiciona um listener para o botão
+
+        btnMostrar.addActionListener(new ActionListener() {
+
+            @Override
+
+            public void actionPerformed(ActionEvent e) {
+
+                String nome = txtNome.getText();
+
+                String sobrenome = txtSobrenome.getText();
+
+                JOptionPane.showMessageDialog(FormularioSwing.this,
+
+                        "Nome: " + nome + "\nSobrenome: " + sobrenome);
+
+            }
+
+        });
+
+    }
+
+
+
+    public static void main(String[] args) {
+
+        SwingUtilities.invokeLater(new Runnable() {
+
+            @Override
+
+            public void run() {
+
+                new FormularioSwing().setVisible(true);
+
+            }
+
+        });
+
+    }
+
+}
