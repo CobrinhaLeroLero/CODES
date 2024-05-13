@@ -1,4 +1,4 @@
-//funçoes
+#funçoes
 
 def obter_nota(musica):
     while True:
@@ -29,7 +29,7 @@ def exibir_ranking_albuns(ranking):
         
         print(f'{cor}{album} - Nota: {nota: .1f}\033[m')
 
-
+#Main
 
 from funcoes import obter_nota
 from funcoes import exibir_ranking_albuns
